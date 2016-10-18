@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="lib/fastjson-1.2.4.jar"/>
+	<classpathentry kind="lib" path="lib/libthrift-0.9.1.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-over-slf4j-1.7.5.jar"/>
+	<classpathentry kind="lib" path="lib/logback-classic-1.0.13.jar"/>
+	<classpathentry kind="lib" path="lib/logback-core-1.0.13.jar"/>
+	<classpathentry kind="lib" path="lib/metrics-core-3.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.7.5.jar"/>
+	<classpathentry kind="lib" path="lib/commons-pool-1.6.jar"/>
+	<classpathentry kind="lib" path="lib/jedis-2.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-simple.jar"/>
+	<classpathentry kind="lib" path="lib/telnetd-x-2.1.2.jar"/>
+	<classpathentry kind="lib" path="lib/jcl-over-slf4j-1.7.5.jar"/>
+	<classpathentry kind="lib" path="lib/jmxtools.jar"/>
+	<classpathentry kind="lib" path="lib/pojo-mbean-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/curator-client-2.9.1.jar"/>
+	<classpathentry kind="lib" path="lib/curator-framework-2.9.1.jar"/>
+	<classpathentry kind="lib" path="lib/curator-recipes-2.9.1.jar"/>
+	<classpathentry kind="lib" path="lib/curator-test-2.9.1.jar"/>
+	<classpathentry kind="lib" path="lib/c3p0-0.9.1.2.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.26-bin.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="lib/zookeeper-3.4.6.jar"/>
+	<classpathentry kind="lib" path="lib/guava-16.0.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
