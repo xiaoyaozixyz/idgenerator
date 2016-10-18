@@ -1,0 +1,28 @@
+分布式ID生成器的使用说明
+1.目录说明：
+（1）code\server目录下是id生成器服务的源码；
+（2）code\client\sdk目录下是ID生成器的客户端SDK；
+（3）code\client\sdk_src目录下是ID生成器的客户端SDK的源码；
+（4）code\client\sdk_demo目录下是ID生成器的客户端SDK的使用示例；
+2.id生成器服务编译、部署方式：
+1）下面是编译方式：
+	（1）在windows下运行脚本：code\server\script\jar_comp.bat，
+	该脚本将自动编译id生成器服务的源码，并打包成jar包移动到code\server\lib目录下；
+	（2）新建一个idgen_server目录；
+	（3）将id生成器服务源码下的conf、lib两个文件夹直接复制到idgen_server目录；
+	（4）将目录下code\server\script下的run.sh复制到idgen_server目录；
+2）下面是部署步骤：
+	（1）执行doc\database目录下的两个数据库sql，其中：create_table.sql用于建表，
+get_new_id_section_one.sql用于创建存储过程；
+	（2）修改run.sh中java的路径为所运行主机的java安装路径，如下所示：
+JAVA=/usr/local/java/bin/java
+	（3）修改配置文件conf/idgen.conf，主要修改数据的地址、用户名、密码等信息为你创建的数据库信息；
+	（4）将idgen_server目录复制到目标服务器上；
+	（5）直接运行run.sh脚本即可启动ID生成器服务；
+3.id生成器服务的使用
+	（1）id生成器采用thrift框架，该框架对多语言支持较好，这里我们已经把thrift的IDL文件放在了目录doc\thrift\idl_file下
+用户想使用什么语言，就可以那这个idl文件生成自己所用语言的stub文件；
+	（2）这里我们提供了java版本的stub文件，并对这个stub文件封装了连接池，因此，如果使用java开发，直接使用可获得的sdk即可；
+	（3）客户端的sdk示例代码在目录code\client\sdk_demo中；sdk的源码在目录code\client\sdk_src中；
+	【注意】如果不是使用java语言时要尽量将stub文件封装成对象池，因为ID生成器服务采用thrift框架来实现，在调用的开始要创建socket，调用完成要关闭socket，如此频繁的打开、关闭socket
+不仅仅会在客户端造成效率低下的问题，更重要的是在并发量较大时，频繁关闭socket时造成大量的time_wait状态，因此尽量自己做过连接池，让socket用完不要关闭而是归还到连接池中；

@@ -1,0 +1,53 @@
+<configuration scan="true" scanPeriod="60 seconds">	  <!-- Auto Scan config file  -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    	<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      		<level>debug</level>		<!-- only show error msg in stdout  -->
+    	</filter>
+    	<encoder>
+      		<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] [%file:%line] - %msg%n</pattern>
+    	</encoder>
+    </appender>
+    
+    <appender name="ERROR_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    	<file>log/idGentest-error.log</file>
+    	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+    		<fileNamePattern>log/idGentest-error.log.%d{yyyy-MM-dd}</fileNamePattern>
+			<maxHistory>10</maxHistory>
+    	</rollingPolicy>
+    	<encoder>
+    		<pattern>%d{HH:mm:ss.SSS} %-5level [%thread] [%file:%line] - %msg%n</pattern>
+    	</encoder>
+    	<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      		<level>warn</level>		<!-- only log warn/error msg -->
+    	</filter>
+    </appender>
+    
+    <appender name="NORMAL_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    	<file>log/idGentest.log</file>
+    	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+    		<fileNamePattern>log/idGentest.log.%d{yyyy-MM-dd}</fileNamePattern>
+			<maxHistory>10</maxHistory>
+    	</rollingPolicy>
+    	<encoder>
+    		<pattern>%d{HH:mm:ss.SSS} %-5level [%thread] [%file:%line] - %msg%n</pattern>
+    	</encoder>
+    </appender>
+    
+    <!-- #################################################################### -->
+    
+    <root level="debug">				<!-- level=trace/debug/info/warn/error/all/off -->
+    	<appender-ref ref="STDOUT" />
+    	<appender-ref ref="ERROR_LOG" />
+    	<appender-ref ref="NORMAL_LOG" />
+  	</root>
+  	
+  	<logger name="com.xdja.idgen.telnet" level="warn"/>		
+  	<logger name="org.apache.http" level="info"/>			
+  	<logger name="com.mchange" level="info"/>				<!-- c3p0 logs -->
+  	<logger name="c.m.v.resourcepool" level="info"/>
+  	<logger name="net.wimpi.telnetd" level="warn"/>			<!-- telnetd-x lib -->
+  	
+  	<logger name="foo.bar" additivity="false">		<!-- only output to NORMAL_LOG -->
+  		<appender-ref ref="NORMAL_LOG" /> 	
+  	</logger>
+</configuration>
